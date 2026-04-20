@@ -81,6 +81,12 @@ class Selection:
         finally:
             driver.quit()
 
+    def como_dicionario(self):
+        return {"url": self.__url, "xpath": self.__xpath, "conteudo": self.__conteudo}
+
+    def __str__(self):
+        return f"Seleção em: {self.__url}\nXPath: {self.__xpath}\nTexto: {self.__conteudo}"
+
     @property
     def url(self):
         return self.__url
@@ -92,9 +98,3 @@ class Selection:
     @property
     def conteudo(self):
         return self.__conteudo
-
-    def como_dicionario(self):
-        return {"url": self.__url, "xpath": self.__xpath, "conteudo": self.__conteudo}
-
-    def __str__(self):
-        return f"Seleção em: {self.__url}\nXPath: {self.__xpath}\nTexto: {self.__conteudo}"
