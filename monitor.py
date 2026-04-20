@@ -15,7 +15,7 @@ class Monitor:
         self.__selection = selection
         self.__interval_sec = interval_minut * 60
         self.__is_active = True
-        self.__last_occurence = ""
+        self.__last_change = ""
 
         while self.__is_active:
             try:
@@ -31,7 +31,7 @@ class Monitor:
 
                 element = driver.find_element("xpath", self.__selection.xpath)
                 if element.text != self.__selection.conteudo:
-                    self.__last_occurence = element.text
+                    self.__last_change = element.text
                     action.trigger()
 
             except NoSuchElementException:
@@ -57,6 +57,9 @@ class Monitor:
     def change_interval(self, interval_minut):
         self.__interval_sec = interval_minut * 60
 
+    def __str__(self):
+        return f"Selection: {self.__selection}\nInterval: {self.__interval_sec /60}\nIs active: {self.__is_active}\nLast change: {self.__last_change}\n"
+
     @property
     def interval(self):
         return self.__interval_sec / 60
@@ -66,9 +69,9 @@ class Monitor:
         return self.__selection
 
     @property
-    def target_modified(self):
-        return self.__target_modified
-    
+    def active(self):
+        return self.__is_active
+
     @property
-    def last_occurence(self):
-        return self.__last_occurence
+    def last_change(self):
+        return self.__last_change

@@ -7,4 +7,4 @@ class Notify(action):
         pass
 
     def trigger(self):
-        pass
+        print("bam")

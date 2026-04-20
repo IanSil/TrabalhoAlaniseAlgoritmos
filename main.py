@@ -1,13 +1,13 @@
 from selector import Selection
+from monitor import Monitor
+from notifier import Notify
 
 # testando as coisas
-tmpimpt = "https://store.steampowered.com/app/582010/Monster_Hunter_World/"
-url = input("Cole aqui a url que será monitorada:")
-s = Selection(tmpimpt)
 
-print(s.url)
-print(s.xpath)
-print(s.conteudo)
-
-
-print(s)
+tmpinput = "https://impostometro.com.br/"
+# url = input("Cole aqui a url que será monitorada:")
+s = Selection(tmpinput)
+notifier = Notify()
+monitor = Monitor(s, notifier, 1)
+print()
+print(monitor)
