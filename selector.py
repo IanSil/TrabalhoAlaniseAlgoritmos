@@ -57,7 +57,7 @@ class Selection:
         driver.get(self.url)
         driver.execute_script(js_script)
 
-        print("Selecionando um elemento")
+        print(f"\nSelector ativado")
 
         try:
             while True:

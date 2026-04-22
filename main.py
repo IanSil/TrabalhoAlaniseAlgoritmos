@@ -1,6 +1,7 @@
 from selector import Selection
-from monitor import Monitor
+from comparator import Comparator
 from notifier import Notify
+from scheduler import Schedule
 
 # testando as coisas
 
@@ -8,6 +9,14 @@ tmpinput = "https://impostometro.com.br/"
 # url = input("Cole aqui a url que será monitorada:")
 s = Selection(tmpinput)
 notifier = Notify()
-monitor = Monitor(s, notifier, 1)
+comparator = Comparator(s, notifier, 1)
 print()
-print(monitor)
+print(comparator)
+
+schedule = Schedule()
+schedule.start(comparator)
+while True:
+    x = input()
+    if x != "":
+        schedule.stop()
+        break
