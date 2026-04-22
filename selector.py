@@ -5,6 +5,9 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 
+# Classe para selecionar o elemento a ser monitorado
+# A seleção é feita de forma point-and-click por meio da injeção do script em javascript com o selenium
+# Registra a Url, o Xpath do elemento e o conteúdo do elemento
 class Selection:
 
     def __init__(self, url):
@@ -54,7 +57,7 @@ class Selection:
         driver.get(self.url)
         driver.execute_script(js_script)
 
-        print("Selecionando um elemento")
+        print(f"\nSelector ativado")
 
         try:
             while True:
@@ -78,6 +81,12 @@ class Selection:
         finally:
             driver.quit()
 
+    def como_dicionario(self):
+        return {"url": self.__url, "xpath": self.__xpath, "conteudo": self.__conteudo}
+
+    def __str__(self):
+        return f"Seleção em: {self.__url}\nXPath: {self.__xpath}\nTexto: {self.__conteudo}"
+
     @property
     def url(self):
         return self.__url
@@ -89,9 +98,3 @@ class Selection:
     @property
     def conteudo(self):
         return self.__conteudo
-
-    def como_dicionario(self):
-        return {"url": self.__url, "xpath": self.__xpath, "conteudo": self.__conteudo}
-
-    def __str__(self):
-        return f"Seleção em: {self.__url}\nXPath: {self.__xpath}\nTexto: {self.__conteudo}"

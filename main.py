@@ -1,13 +1,22 @@
 from selector import Selection
+from comparator import Comparator
+from notifier import Notify
+from scheduler import Schedule
 
 # testando as coisas
-tmpimpt = "https://store.steampowered.com/app/582010/Monster_Hunter_World/"
-url = input("Cole aqui a url que será monitorada:")
-s = Selection(tmpimpt)
 
-print(s.url)
-print(s.xpath)
-print(s.conteudo)
+tmpinput = "https://impostometro.com.br/"
+# url = input("Cole aqui a url que será monitorada:")
+s = Selection(tmpinput)
+notifier = Notify()
+comparator = Comparator(s, notifier, 1)
+print()
+print(comparator)
 
-
-print(s)
+schedule = Schedule()
+schedule.start(comparator)
+while True:
+    x = input()
+    if x != "":
+        schedule.stop()
+        break
