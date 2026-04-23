@@ -1,11 +1,11 @@
 from time import sleep
-from interfaces import action
+from interfaces import Action
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import WebDriverException
 
 
-class Reaction(action):
+class Reaction(Action):
 
     def __init__(self):
         self.__url = "https://www.wikipedia.org/"
