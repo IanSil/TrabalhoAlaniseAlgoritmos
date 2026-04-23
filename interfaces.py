@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 
-class action(ABC):
+class Action(ABC):
 
     @abstractmethod
     def trigger(self):

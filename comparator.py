@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
@@ -6,17 +7,28 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 
-# Compara o elemento selecionado e dá trigger na classe Action. Também armazena o intervalo de cada comparação (talvez mover isso para o scheduler depois)
 class Comparator:
+    """
+    Compara o elemento selecionado e dá trigger na classe Action.
+    Também armazena o intervalo de cada comparação
+    TODO: mover isso para o scheduler depois
+    """
+    def __init__(self, selection, action, interval):
+        """
+        :param selection: elemento selecionado na página
+        :param action:
+        :param interval: tempo de intervalo entre as seleções
+        """
 
-    def __init__(self, Selection, Action, interval):
-
-        self.__selection = Selection
+        self.__selection = selection
         self.__interval = interval
-        self.__action = Action
+        self.__action = action
         self.__last_change_detected = ""
 
-    def compare(self):
+    def compare(self) -> None:
+        """
+        Configura a conexão com um navegador chromium instalado no pc do usuário
+        """
         try:
             options = Options()
             options.add_argument("--headless=new")
@@ -47,7 +59,11 @@ class Comparator:
         finally:
             driver.quit()
 
-    def change_interval(self, interval):
+    def change_interval(self, interval) -> None:
+        """
+        Modifica o intervalo entre verificações da página
+        :param interval: interval
+        """
         self.__interval = interval
 
     def __str__(self):
