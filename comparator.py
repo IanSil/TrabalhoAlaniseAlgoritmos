@@ -28,14 +28,7 @@ class Comparator:
             driver.get(self.__selection.url)
 
             element = driver.find_element("xpath", self.__selection.xpath)
-            print(f"\n[{datetime.now():%d/%m/%Y %H:%M:%S}]")
-            print(f"Elemento encontrado: {element}\nConteúdo atual: {element.text}")
-            print(f"Conteúdo gravado da seleção: {self.__selection.conteudo}")
-            if element.text != self.__selection.conteudo:
-                print(f"Última mudaça reconhecida: {self.__last_change_detected}")
-                self.__last_change_detected = element.text
-                print("Ativando ação")
-                self.__action.trigger()
+            element_text = element.text
         except NoSuchElementException:
             print("Erro: O elemento selecionado não foi encontrado na página.")
         except TimeoutException:
@@ -46,12 +39,20 @@ class Comparator:
             print("\nInterrompido pelo usuário (Ctrl+C).")
         finally:
             driver.quit()
+        print(f"\n[{datetime.now():%d/%m/%Y %H:%M:%S}]")
+        print(f"Elemento encontrado: {element}\nConteúdo atual: {element_text}")
+        print(f"Conteúdo gravado da seleção: {self.__selection.conteudo}")
+        if element_text != self.__selection.conteudo:
+            print(f"Última mudaça reconhecida: {self.__last_change_detected}")
+            self.__last_change_detected = element_text
+            print("Ativando ação")
+            self.__action.trigger()
 
     def change_interval(self, interval):
         self.__interval = interval
 
     def __str__(self):
-        return f"Selection: {self.__selection}\nAction: {self.__action}\nInterval: {self.__interval}\nLast change detected: {self.__last_change_detected}\n"
+        return f"Selection: {self.__selection}\nAction: {self.__action}\nInterval: {self.__interval} minutos\nLast change detected: {self.__last_change_detected}\n"
 
     @property
     def interval(self):

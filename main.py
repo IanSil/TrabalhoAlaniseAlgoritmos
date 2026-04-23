@@ -1,15 +1,16 @@
 from selector import Selection
 from comparator import Comparator
-from notifier import Notify
+from reactiontest import Reaction
 from scheduler import Schedule
 
 # testando as coisas
 
-tmpinput = "https://impostometro.com.br/"
-# url = input("Cole aqui a url que será monitorada:")
+tmpinput = "https://www.worldometers.info/"
+#url = input("Cole aqui a url que será monitorada:")
+#tmpinput = url
 s = Selection(tmpinput)
-notifier = Notify()
-comparator = Comparator(s, notifier, 1)
+reaction = Reaction()
+comparator = Comparator(s, reaction, 1)
 print()
 print(comparator)
 
