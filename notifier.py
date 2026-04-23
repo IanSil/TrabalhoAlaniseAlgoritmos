@@ -1,10 +1,10 @@
-from interfaces import action
+from interfaces import Action
 
 
-class Notify(action):
+class Notify(Action):
 
     def __init__(self):
         pass
 
-    def trigger(self):
+    def trigger(self) -> None:
         print("bam")

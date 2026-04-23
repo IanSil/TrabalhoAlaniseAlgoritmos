@@ -5,13 +5,16 @@ from selenium.common.exceptions import TimeoutException
 from selenium.common.exceptions import WebDriverException
 
 
-# Classe para selecionar o elemento a ser monitorado
-# A seleção é feita de forma point-and-click por meio da injeção do script em javascript com o selenium
-# Registra a Url, o Xpath do elemento e o conteúdo do elemento
 class Selection:
-
-    def __init__(self, url):
-
+    """
+    Classe para selecionar o elemento a ser monitorado
+    A seleção é feita de forma point-and-click por meio da injeção do script em javascript com o selenium
+    Registra a Url, o Xpath do elemento e o conteúdo do elemento
+    """
+    def __init__(self, url: str):
+        """
+        :param url: string contendo uma url http
+        """
         self.__url = url
         self.__xpath = ""
         self.__conteudo = ""
