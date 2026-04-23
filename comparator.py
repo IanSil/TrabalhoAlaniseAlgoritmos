@@ -12,15 +12,12 @@ class Comparator:
     Também armazena o intervalo de cada comparação
     TODO: mover isso para o scheduler depois
     """
-    def __init__(self, selection, action, interval):
+    def __init__(self, Selection, Action, interval):
         """
         :param selection: elemento selecionado na página
         :param action:
         :param interval: tempo de intervalo entre as seleções
         """
-
-    def __init__(self, Selection, Action, interval):
-
         self.__selection = Selection
         self.__interval = interval
         self.__action = Action
