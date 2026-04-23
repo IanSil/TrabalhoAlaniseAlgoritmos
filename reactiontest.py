@@ -12,21 +12,33 @@ class Reaction(action):
 
     def trigger(self):
         print("Abrindo Wikipedia")
-        driver = webdriver.Chrome()
-        driver.get(self.__url)
+        self.driver = webdriver.Chrome()
+        self.driver.get(self.__url)
 
         search = "Trabalho acadêmico"
         for letra in search:
-            driver.find_element(By.ID, "searchInput").send_keys(letra)
+            self.driver.find_element(By.ID, "searchInput").send_keys(letra)
             sleep(0.2)
         sleep(1)
-        driver.find_element(By.CLASS_NAME, "pure-button-primary-progressive").click()
+        self.driver.find_element(
+            By.CLASS_NAME, "pure-button-primary-progressive"
+        ).click()
 
         try:
             while True:
-                _ = driver.title
+                _ = self.driver.title
                 sleep(1)
         except WebDriverException:
             print("Janela fechada pelo usuário")
         finally:
-            driver.quit()
+            self.driver.quit()
+
+    def close_driver(self):
+        if self.driver:
+            try:
+                self.driver.quit()
+                print("Driver encerrado com sucesso.")
+            except Exception as e:
+                print(f"Erro ao tentar fechar o driver: {e}")
+            finally:
+                self.driver = None

@@ -81,6 +81,9 @@ class Selection:
         finally:
             driver.quit()
 
+    def quit(self):
+        driver.quit()
+
     def como_dicionario(self):
         return {"url": self.__url, "xpath": self.__xpath, "conteudo": self.__conteudo}
 

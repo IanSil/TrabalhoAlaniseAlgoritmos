@@ -14,7 +14,7 @@ class Comparator:
         self.__selection = Selection
         self.__interval = interval
         self.__action = Action
-        self.__last_change_detected = ""
+        self.__last_change_detected = Selection.conteudo
 
     def compare(self):
         try:
